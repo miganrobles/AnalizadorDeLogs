@@ -82,4 +82,27 @@ public class LogAnalyzer
         }
         return numeroAccesos;
     }
+
+    /**
+     * Devuelve en qué hora el servidor tuvo que responder a más peticiones. 
+     * Si hay empate devuelve la última de las horas. 
+     * Si no ha habido accesos informa del hecho por pantalla y devuelve -1.
+     */
+    public int busiestHour()
+    {
+        int horaMasPeticiones = -1;
+        int numeroPeticiones = 0;
+        for (int contador = 0; contador < hourCounts.length; contador++) {
+            if (hourCounts[contador] > 0) {
+                if (hourCounts[contador] >= numeroPeticiones) {
+                    numeroPeticiones = hourCounts[contador];
+                    horaMasPeticiones = contador;
+                }
+            }
+        }
+        if (numeroPeticiones == 0) {
+            System.out.println("No se ha realizado ningún acceso al servidor");
+        }
+        return horaMasPeticiones;
+    }
 }
