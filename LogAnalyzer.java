@@ -23,7 +23,7 @@ public class LogAnalyzer
         // Create the reader to obtain the data.
         reader = new LogfileReader();
     }
-    
+
     /**
      * Constructor que se le pasa el nombre del archivo de log a analizar.
      */
@@ -35,7 +35,7 @@ public class LogAnalyzer
         // Create the reader to obtain the data.
         reader = new LogfileReader(nombreFichero);
     }
-    
+
     /**
      * Analyze the hourly access data from the log file.
      */
@@ -62,12 +62,24 @@ public class LogAnalyzer
             hour++;
         }
     }
-    
+
     /**
      * Print the lines of data read by the LogfileReader
      */
     public void printData()
     {
         reader.printData();
+    }
+
+    /**
+     * Devuelve el número total de accesos al servidor web registrados en el archivo de log. 
+     */
+    public int numberOfAccesses()
+    {
+        int numeroAccesos = 0;
+        for (int contador = 0; contador < hourCounts.length; contador++) {
+            numeroAccesos += hourCounts[contador];
+        }
+        return numeroAccesos;
     }
 }
